@@ -1,0 +1,13 @@
+node_modules/
+target/
+*.log
+.env
+# Ignore MySQL socket file
+*.sock
+
+# Ignore IntelliJ IDEA settings
+.idea/
+
+# Ignore target & build folders
+target/
+build/
