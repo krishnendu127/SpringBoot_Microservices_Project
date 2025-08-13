@@ -15,8 +15,12 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class NotificationService {
-
+    private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(NotificationService.class);
     private final JavaMailSender javaMailSender;
+
+    public NotificationService(JavaMailSender javaMailSender) {
+        this.javaMailSender = javaMailSender;
+    }
 
     @KafkaListener(topics = "order-placed")
     public void listen(OrderPlacedEvent orderPlacedEvent){
@@ -35,7 +39,7 @@ public class NotificationService {
                             Spring Shop
                             """,
 
-                    orderPlacedEvent.getOrderNumber()));
+                    orderPlacedEvent.getFirstName(),orderPlacedEvent.getLastName(),orderPlacedEvent.getOrderNumber()));
         };
         try {
             javaMailSender.send(messagePreparator);

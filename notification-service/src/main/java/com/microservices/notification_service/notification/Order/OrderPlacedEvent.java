@@ -18,4 +18,11 @@ public class OrderPlacedEvent {
     public Object getLastName() {
         return null;
     }
+
+    public String getEmail() {
+        return email;
+    }
+    public String getOrderNumber() {
+        return orderNumber;
+    }
 }
